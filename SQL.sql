@@ -9,8 +9,6 @@ CREATE TABLE Containers (
     IsEmpty BIT,
     ArrivalDate DATETIME
 );
-
--- Создание таблицы "Операции"
 CREATE TABLE Operations (
     ID INT PRIMARY KEY,
     ContainerID INT,
@@ -20,8 +18,6 @@ CREATE TABLE Operations (
     OperatorName VARCHAR(255),
     InspectionPlace VARCHAR(255)
 );
-
--- Запрос на выбор всех данных из таблицы "Контейнеры" в формате JSON
 SELECT CONCAT(
     '{"ID":', CONVERT(VARCHAR, ID), ',',
     '"Number":', CONVERT(VARCHAR, Number), ',',
@@ -34,11 +30,8 @@ SELECT CONCAT(
     '"ArrivalDate":"', CONVERT(VARCHAR, ArrivalDate, 120), '"}'
 ) AS JSONData
 FROM Containers;
-
--- Запрос на выбор всех данных из таблицы "Операции" для определенного контейнера в формате JSON
 DECLARE @ContainerID INT;
-SET @ContainerID = 1; -- Укажите здесь ID контейнера, для которого нужно выбрать операции
-
+SET @ContainerID = 1;
 SELECT CONCAT(
     '{"ID":', CONVERT(VARCHAR, ID), ',',
     '"ContainerID":', CONVERT(VARCHAR, ContainerID), ',',
